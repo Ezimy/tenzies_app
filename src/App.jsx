@@ -68,8 +68,6 @@ export default function App() {
               )
       }
   }
-
-    const buttonText = tenzies ? "New Game" : "Roll"
     const diceElements = dice.map(die => (
         <Die key={die.id} value={die.value} isHeld={die.isHeld} holdDice={()=> holdDice(die.id)}/>
     ))
