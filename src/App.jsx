@@ -46,6 +46,29 @@ export default function App() {
           generateNewDie()
         }))
     }
+    function resetGame(){
+      setDice(allNewDice())
+      setTenzies(false)
+    }
+    function getButton() {
+      if(tenzies === true){
+          return(
+              <button className="roll-dice" 
+              onClick={resetGame}>
+              New Game
+              </button>
+          )
+      }
+      else{
+          return(
+              <button className="roll-dice" 
+              onClick={rollDice}>
+              Roll
+              </button>
+              )
+      }
+  }
+
     const buttonText = tenzies ? "New Game" : "Roll"
     const diceElements = dice.map(die => (
         <Die key={die.id} value={die.value} isHeld={die.isHeld} holdDice={()=> holdDice(die.id)}/>
@@ -59,7 +82,7 @@ export default function App() {
             <div className="dice-container">
                 {diceElements}
             </div>
-            <button className="roll-dice" onClick={rollDice}>{buttonText}</button>
+            {getButton()}
         </main>
     )
 }
