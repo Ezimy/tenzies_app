@@ -6,17 +6,15 @@ import {nanoid} from "nanoid"
 export default function App() {
     const [dice, setDice] = React.useState(allNewDice())
     const [tenzies, setTenzies] = React.useState(false)
-
+    const [count, setCount] = React.useState(0)
+    //useEffect to check state of game
     React.useEffect(() => {
       const allHeld = dice.every(die => die.isHeld)
       const allSame = dice.every(die => die.value === dice[0].value)
     if (allHeld && allSame){
       setTenzies(true)
-      console.log(tenzies)
-      console.log("you win")
     }
     }, [dice])
-
     function allNewDice() {
         const newDice = []
         for (let i = 0; i < 10; i++) {
@@ -40,6 +38,7 @@ export default function App() {
     }
     
     function rollDice() {
+        setCount(count + 1)
         setDice(oldDice => oldDice.map(die => {
           return die.isHeld ?
           die :
@@ -48,6 +47,7 @@ export default function App() {
     }
     function resetGame(){
       setDice(allNewDice())
+      setCount(0)
       setTenzies(false)
     }
     function getButton() {
@@ -82,6 +82,7 @@ export default function App() {
             <div className="dice-container">
                 {diceElements}
             </div>
+            <h1>{count}</h1>
             {getButton()}
         </main>
     )

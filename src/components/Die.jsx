@@ -3,15 +3,14 @@ export default function Die(props){
     const styles = {
         backgroundColor: props.isHeld ? "#59E391" : "white"
     }
-    function generateDotDiv(){
-        return <div className="dot"></div>
+    function generateDotDiv(index){
+        return <div key={index} className="dot"></div>
     }
     function dots() {
         const dotsArray = []
         for(let i = 0 ; i < props.value; i++){
-            dotsArray.push(generateDotDiv())
+            dotsArray.push(generateDotDiv(i))
         }
-        console.log(dotsArray)
         return dotsArray
     }
     return(
